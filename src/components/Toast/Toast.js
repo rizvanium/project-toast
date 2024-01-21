@@ -18,7 +18,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ message='no message provided', variant='notice', handleClose }) {
+function Toast({ children, variant='notice', handleClose }) {
   const Icon = ICONS_BY_VARIANT[variant]
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
@@ -26,7 +26,7 @@ function Toast({ message='no message provided', variant='notice', handleClose })
         <Icon size={24} />
       </div>
       <p className={styles.content}>
-        { message }
+        { children }
       </p>
       <button className={styles.closeButton} onClick={handleClose}>
         <X size={24} />
@@ -36,4 +36,4 @@ function Toast({ message='no message provided', variant='notice', handleClose })
   );
 }
 
-export default Toast;
+export default React.memo(Toast);
